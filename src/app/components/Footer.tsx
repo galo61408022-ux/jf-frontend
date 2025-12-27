@@ -1,5 +1,5 @@
 import { Plane, Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
-
+import logo from '../../assets/logo.png';
 interface FooterProps {
   onNavigate: (page: string) => void;
 }
@@ -12,9 +12,12 @@ export function Footer({ onNavigate }: FooterProps) {
           {/* Brand Section */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg flex items-center justify-center">
-                <Plane className="w-6 h-6 text-white" />
-              </div>
+              <img
+  src={logo}
+  alt="JF Travels Logo"
+  className="w-10 h-10 object-contain"
+/>
+
               <div className="flex flex-col items-start">
                 <span className="font-bold text-lg text-white">JF Travels</span>
                 <span className="text-xs text-gray-400">Bureau de Change</span>

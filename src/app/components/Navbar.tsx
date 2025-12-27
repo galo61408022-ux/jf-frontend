@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import logo from '../../assets/logo.png';
+
 import { Menu, X, Plane, User, Globe } from 'lucide-react';
 import { Button } from './ui/button';
 import {
@@ -20,14 +22,14 @@ interface NavbarProps {
   onCurrencyChange: (currency: string) => void;
 }
 
-export function Navbar({ 
-  currentPage, 
-  onNavigate, 
+export function Navbar({
+  currentPage,
+  onNavigate,
   isAuthenticated,
   isAdmin = false,
   onLogout,
   selectedCurrency,
-  onCurrencyChange 
+  onCurrencyChange
 }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileCurrencyOpen, setMobileCurrencyOpen] = useState(false);
@@ -51,9 +53,12 @@ export function Navbar({
             onClick={() => onNavigate('home')}
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg flex items-center justify-center">
-              <Plane className="w-6 h-6 text-white" />
-            </div>
+            <img
+              src={logo}
+              alt="JF Travels Logo"
+              className="w-10 h-10 object-contain"
+            />
+
             <div className="flex flex-col items-start">
               <span className="font-bold text-lg text-gray-900">JF Travels</span>
               <span className="text-xs text-gray-600">Bureau de Change</span>
@@ -66,11 +71,10 @@ export function Navbar({
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`transition-colors ${
-                  currentPage === item.id
+                className={`transition-colors ${currentPage === item.id
                     ? 'text-blue-600'
                     : 'text-gray-700 hover:text-blue-600'
-                }`}
+                  }`}
               >
                 {item.name}
               </button>
@@ -147,7 +151,7 @@ export function Navbar({
               >
                 {currentCurrencyData?.flag || '🌍'}
               </button>
-              
+
               {/* Mobile Currency Dropdown */}
               {mobileCurrencyOpen && (
                 <div className="absolute right-0 top-12 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-[150px]">
@@ -158,9 +162,8 @@ export function Navbar({
                         onCurrencyChange(rate.code);
                         setMobileCurrencyOpen(false);
                       }}
-                      className={`w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors flex items-center gap-2 ${
-                        selectedCurrency === rate.code ? 'bg-blue-50 text-blue-600' : ''
-                      }`}
+                      className={`w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors flex items-center gap-2 ${selectedCurrency === rate.code ? 'bg-blue-50 text-blue-600' : ''
+                        }`}
                     >
                       <span className="text-xl">{rate.flag}</span>
                       <span className="text-sm font-medium">{rate.code}</span>
@@ -191,11 +194,10 @@ export function Navbar({
                     onNavigate(item.id);
                     setMobileMenuOpen(false);
                   }}
-                  className={`text-left px-4 py-2 rounded-lg transition-colors ${
-                    currentPage === item.id
+                  className={`text-left px-4 py-2 rounded-lg transition-colors ${currentPage === item.id
                       ? 'bg-blue-50 text-blue-600'
                       : 'text-gray-700 hover:bg-gray-50'
-                  }`}
+                    }`}
                 >
                   {item.name}
                 </button>
